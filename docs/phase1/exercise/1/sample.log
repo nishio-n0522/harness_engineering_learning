@@ -1,2 +1,2 @@
 info: pre-commit フックのシェルスクリプトが意図通りに動作するかのテスト
-test: 2
+test: 3
