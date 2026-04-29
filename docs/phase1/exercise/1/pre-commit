@@ -1,0 +1,19 @@
+#!/bin/sh
+
+echo "info: pre-commit hook started"
+
+staged_files=$(git diff --cached --name-only --diff-filter=ACM)
+
+has_error=0
+for staged_file in "$staged_files"; do
+    if echo "$staged_file" | grep -qE '\.log$'; then
+        printf "\033[31mログファイルがステージされています:\n %s\n\033[0m" "$staged_file"
+        has_error=1
+    fi
+done
+
+if [ "$has_error" -eq 1 ]; then 
+    exit 1
+fi
+
+exit 0

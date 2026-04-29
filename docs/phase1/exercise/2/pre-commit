@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# 引数のファイルの1行目にshebangがあるかどうかをチェックする関数
+check_has_shebang() {
+	first_line=$(head -n 1 "$1")
+	if [ "$first_line" = '#!/bin/sh' ] || [ "$first_line" = '#!/bin/bash' ]; then
+		return 0
+	fi
+	return 1
+}
+
+check_has_capital_extension(){
+	if echo "$1" | grep -qE '\.[A-Z]+$'; then
+		return 0
+	fi
+	return 1
+}
+
+
+printf 'pre-commit hook started\n'
+
+files=$(git diff --cached --name-only --diff-filter=ACMR)
+
+has_error=0
+for file in $files; do
+	if check_has_capital_extension "$file"; then
+		printf "\033[31merror: 拡張子に大文字が含まれています: %s\033[0m\n" "$file"
+		has_error=1
+	fi
+done
+
+shell_files=$(echo "$files" | grep '\.sh$')
+for shell_file in $shell_files; do
+	if ! check_has_shebang "$shell_file"; then
+		printf "\033[31merror: shebangがありません: %s\033[0m\n" "$shell_file"
+		has_error=1
+	fi
+done
+
+if [ "$has_error" -eq 1 ]; then
+	exit 1
+fi
+
+exit 0
