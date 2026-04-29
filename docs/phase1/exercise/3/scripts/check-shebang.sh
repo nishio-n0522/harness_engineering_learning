@@ -9,7 +9,7 @@ check_has_shebang() {
 	return 1
 }
 
-printf 'pre-commit hook started\n'
+printf 'check shebang hook started\n'
 
 has_error=0
 for shell_file in "$@"; do

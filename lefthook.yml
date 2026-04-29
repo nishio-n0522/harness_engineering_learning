@@ -24,6 +24,9 @@ pre-commit:
       run: ./docs/phase1/exercise/3/scripts/check-shebang.sh {staged_files}
       glob: "*.sh"
 
+    - name: check-capital-extension
+      run: ./docs/phase1/exercise/3/scripts/check-capital-extension.sh {staged_files}
+
     # - name: rubocop
     #   glob: "*.rb"
     #   exclude:
