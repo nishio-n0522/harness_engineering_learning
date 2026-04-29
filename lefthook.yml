@@ -2,45 +2,23 @@
 #
 #   Refer for explanation to following link:
 #   https://lefthook.dev/configuration/
-#
-# pre-push:
-#   jobs:
-#     - name: packages audit
-#       tags:
-#         - frontend
-#         - security
-#       run: yarn audit
-#
-#     - name: gems audit
-#       tags:
-#         - backend
-#         - security
-#       run: bundle audit
-#
+
 pre-commit:
   parallel: true
   jobs:
     - name: check-shebang
       run: ./docs/phase1/exercise/3/scripts/check-shebang.sh {staged_files}
       glob: "*.sh"
-
     - name: check-capital-extension
       run: ./docs/phase1/exercise/3/scripts/check-capital-extension.sh {staged_files}
 
-    # - name: rubocop
-    #   glob: "*.rb"
-    #   exclude:
-    #     - config/application.rb
-    #     - config/routes.rb
-    #   run: bundle exec rubocop --force-exclusion -- {all_files}
+commit-msg:
+  jobs:
+    - name: check-commit-msg
+      run: ./docs/phase1/exercise/3/scripts/check-commit-msg.sh {1}
 
-    # - name: govet
-    #   files: git ls-files -m
-    #   glob: "*.go"
-    #   run: go vet -- {files}
-
-    # - script: "hello.js"
-    #   runner: node
-
-    # - script: "hello.go"
-    #   runner: go run
+pre-push:
+  jobs:
+    - name: confirm-protected-push
+      run: ./docs/phase1/exercise/3/scripts/confirm-protected-push.sh
+      interactive: true
