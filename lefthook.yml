@@ -20,5 +20,5 @@ commit-msg:
 pre-push:
   jobs:
     - name: confirm-protected-push
-      run: ./docs/phase1/exercise/3/scripts/confirm-protected-push.sh {0}
-      use_stdin: true
+      run: ./docs/phase1/exercise/3/scripts/confirm-protected-push.sh
+      interactive: true
