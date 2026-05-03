@@ -10,7 +10,13 @@ jobs:
       - env:
           EXAMPLE: Define by step level
         run: echo "${EXAMPLE}"
-      - name: show-all-env
+      - name: show-env-context
         env:
-          CHECK_CONTEXT_ENV: ${{toJson(env)}}
-        run: echo "$CHECK_CONTEXT_ENV"
+          CHECK_CONTEXT_ENV: ${{ toJson(env) }}
+        run: |
+          echo "=== env context (workflow定義のenvのみ) ==="
+          echo "$CHECK_CONTEXT_ENV"
+      - name: show-all-runner-env
+        run: |
+          echo "=== ランナー上の全環境変数（GITHUB_*, RUNNER_*等を含む） ==="
+          env | sort
