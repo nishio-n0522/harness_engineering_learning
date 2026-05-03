@@ -11,5 +11,16 @@ jobs:
           ENDWITH_FUNC: ${{ endsWith('Hello', 'llo')}}
       - name: containsの配列としての使い方を確認
         env:
-          CONTAINS: ${{ github.event.commits }}
-        run: echo "$CONTAINS"
+          # 配列やオブジェクトはenvに直接渡せない（A sequence was not expectedエラー）
+          # toJSONで文字列化してから渡す必要がある
+          COMMITS: ${{ toJSON(github.event.commits) }}
+          # contains(配列, 値) は配列に値が含まれているかをbool返す
+          # 例: コミットメッセージ一覧に特定文字列が含まれているか
+          # NOTE: IDEがcommits[]のスキーマを推論できず "Context access might be invalid" 警告を出すが、
+          # GitHub Actionsの公式構文として正しく、実行時は問題なく動作する
+          CONTAINS_MESSAGE: ${{ contains(github.event.commits.*.message, 'fix') }}
+        run: |
+          echo "=== commits配列 ==="
+          echo "$COMMITS"
+          echo "=== contains判定 ==="
+          echo "$CONTAINS_AUTHOR"
