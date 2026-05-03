@@ -34,3 +34,7 @@ jobs:
         env:
           FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'world') }}
           JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}
+      - name: JSON操作関数の挙動をチェック
+        run: echo "${CONTEXT}"
+        env:
+          CONTEXT: ${{ toJson(github) }}
