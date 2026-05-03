@@ -10,4 +10,4 @@ jobs:
         run: |
           echo "github.run_idを確認: ${GITHUB_RUN_ID}"
           echo "Hello"
-        if: ${{contains(github.run_id, '1') }}
+        if: ${{contains(github.run_id, '111') }}
