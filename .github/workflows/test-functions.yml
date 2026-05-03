@@ -4,6 +4,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: printenv | grep '_FUNC'
         env:
           CONTAINS_FUNC: ${{ contains('Hello', 'ell')}}
@@ -38,3 +39,7 @@ jobs:
         run: echo "${CONTEXT}"
         env:
           CONTEXT: ${{ toJson(github) }}
+      - name: ファイルからハッシュを生成する関数の挙動を確認
+        run: echo "${HASH}"
+        env:
+          HASH: ${{ hashFiles('.github/workflows/*.yml') }}
