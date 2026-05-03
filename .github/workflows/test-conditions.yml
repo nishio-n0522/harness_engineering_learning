@@ -4,5 +4,10 @@ jobs:
   skip-or-run:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello"
+      - name: ifによる条件分岐でstepが実行されたりされなかったりするかチェック
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: |
+          echo "github.run_idを確認: ${GITHUB_RUN_ID}"
+          echo "Hello"
         if: ${{contains(github.run_id, '1') }}
