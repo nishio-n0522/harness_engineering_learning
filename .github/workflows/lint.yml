@@ -1,4 +1,4 @@
-name: "check-lint"
+name: check-lint
 on:
   pull_request:
     branches: [main]
@@ -11,3 +11,4 @@ jobs:
         with:
           node-version: 22
       - run: npm install -D lefthook
+      - run: npx lefthook run pre-commit
