@@ -7,3 +7,8 @@ jobs:
       - run: exit 0
       - run: echo echo "Hello"
         if: ${{ failure() }}
+  release-build:
+    if: ${{ github.actor == 'administrator' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "build release version"
