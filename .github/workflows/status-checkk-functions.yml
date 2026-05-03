@@ -1,4 +1,5 @@
 name: status-check-functions
+run-name: ステータスチェックのテスト by ${{ github.actor }}
 on: push
 jobs:
   fail:
