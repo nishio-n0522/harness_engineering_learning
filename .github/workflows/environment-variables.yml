@@ -10,3 +10,4 @@ jobs:
       - env:
           EXAMPLE: Define by step level
         run: echo "${EXAMPLE}"
+      - run: echo ${{toJson(env)}}
