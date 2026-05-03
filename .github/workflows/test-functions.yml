@@ -18,7 +18,7 @@ jobs:
           # 例: コミットメッセージ一覧に特定文字列が含まれているか
           # NOTE: IDEがcommits[]のスキーマを推論できず "Context access might be invalid" 警告を出すが、
           # GitHub Actionsの公式構文として正しく、実行時は問題なく動作する
-          CONTAINS_MESSAGE: ${{ contains(github.event.commits.*.message, 'fix') }}
+          CONTAINS_MESSAGE: ${{ contains(github.event.commits.*.message, 'nisshi-o') }}
         run: |
           echo "=== commits配列 ==="
           echo "$COMMITS"
