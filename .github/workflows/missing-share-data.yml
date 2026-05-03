@@ -4,5 +4,10 @@ jobs:
   share:
     runs-on: ubuntu-latest
     steps:
-      - run: export RESULT="hello"
-      - run: echo "${RESULT}"
+      - name: GITHUB_OUTPUT環境変数を設定
+        id: source
+        run: echo "result=hello" >> "${GITHUB_OUTPUT}"
+      - name: 前回のステップで設定したGITHUB_OUTPUT環境変数を使用
+        env:
+          RESULT: ${{ steps.source.outputs.result }}
+        run: echo "${RESULT}"
