@@ -4,5 +4,5 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello, world"
-      - uses: actions/checkout@v4
+      - name: check-github-context
+        run: echo ${{ github }}
