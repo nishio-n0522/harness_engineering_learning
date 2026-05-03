@@ -1,0 +1,14 @@
+name: test-github-api
+on: pull_request
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "${GITHUB_HEAD_REF}"
+      - run: gh pr comment "${GITHUB_HEAD_REF}" --body "Hello, ${GITHUB_ACTOR}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
