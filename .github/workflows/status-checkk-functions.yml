@@ -8,7 +8,7 @@ jobs:
       - run: echo echo "Hello"
         if: ${{ failure() }}
   release-build:
-    if: ${{ github.actor == 'nisshi-o' }}
+    if: ${{ github.actor == 'nishio-n0522' }}
     runs-on: ubuntu-latest
     steps:
       - name: リリースバージョンをビルド
