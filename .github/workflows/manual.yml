@@ -7,8 +7,15 @@ on:
         default: Hello
         required: true
         description: A cheerful world
+      log-level:
+        type: choice
+        default: info
+        options:
+          - info
+          - warn
+          - error
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: printf "${{ inputs.greeting }}, world"
+      - run: printf "[${{ inputs.log-level }}] ${{ inputs.greeting }}, world"
