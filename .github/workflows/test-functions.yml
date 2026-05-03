@@ -29,3 +29,8 @@ jobs:
           echo "$CONTAINS_MESSAGE_EXACT"
           echo "=== contains判定（部分一致モード: join後の文字列に 'feat' を含む） ==="
           echo "$CONTAINS_MESSAGE_PARTIAL"
+      - name: 文字列生成関数の挙動チェック
+        run: printenv | grep '_FUNC'
+        env:
+          FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'world') }}
+          JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}
