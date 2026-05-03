@@ -11,5 +11,5 @@ jobs:
           ENDWITH_FUNC: ${{ endsWith('Hello', 'llo')}}
       - name: containsの配列としての使い方を確認
         env:
-          CONTAINS: ${{contains(github.event.commits, 'bug')}}
+          CONTAINS: ${{ github.event.commits }}
         run: echo "$CONTAINS"
