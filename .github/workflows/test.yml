@@ -1,0 +1,14 @@
+name: test-workflow
+on:
+  - push
+  - pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          git lob -l
+          tree -a .
+      - uses: actions/checkout@v4
+        with:
+          ref: main
