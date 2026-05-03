@@ -23,4 +23,4 @@ jobs:
           echo "=== commits配列 ==="
           echo "$COMMITS"
           echo "=== contains判定 ==="
-          echo "$CONTAINS_AUTHOR"
+          echo "$CONTAINS_MESSAGE"
