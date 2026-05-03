@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          git lob -l
+          git log -l
           tree -a .
       - uses: actions/checkout@v4
         with:
