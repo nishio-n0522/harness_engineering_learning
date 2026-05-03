@@ -9,3 +9,7 @@ jobs:
           CONTAINS_FUNC: ${{ contains('Hello', 'ell')}}
           STARTWITH_FUNC: ${{ startsWith('Hello', 'He')}}
           ENDWITH_FUNC: ${{ endsWith('Hello', 'llo')}}
+      - name: containsの配列としての使い方を確認
+        env:
+          CONTAINS: ${{contains(github.event.commits, 'bug')}}
+        run: echo "$CONTAINS"
