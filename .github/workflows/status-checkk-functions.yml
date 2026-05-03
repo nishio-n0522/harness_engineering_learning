@@ -11,4 +11,9 @@ jobs:
     if: ${{ github.actor == 'nisshi-o' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "build release version"
+      - name: リリースバージョンをビルド
+        env:
+          GITHUB_ACTOR: ${{ env.GITHUB_ACTOR }}
+        run: |
+          echo "$GITHUB_ACTOR"
+          echo "build release version"
