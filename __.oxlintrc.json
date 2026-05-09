@@ -1,0 +1,29 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+        "correctness": "error",
+        "suspicious": "warn"
+    },
+    "plugins": [
+        "typescript",
+        "react",
+        "import",
+        "react-perf",
+        "vitest"
+    ],
+    "rules": {
+        "no-unused-vars": "error",
+        "no-console": "off"
+    },
+    "overrides": [
+        {
+            "files": [
+                "**/*.test.ts",
+                "**/*.spec.ts"
+            ],
+            "rules": {
+                "no-console": "off"
+            }
+        }
+    ]
+}
