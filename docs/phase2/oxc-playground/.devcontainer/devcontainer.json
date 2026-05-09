@@ -1,0 +1,22 @@
+{
+  "name": "oxc-playground",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/mise:1": {}
+  },
+  "postCreateCommand": "mise install && corepack enable && pnpm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "oxc.oxc-vscode",
+        "biomejs.biome",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "eslint.experimental.useFlatConfig": true,
+        "editor.formatOnSave": false
+      }
+    }
+  }
+}

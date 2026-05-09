@@ -1,0 +1,33 @@
+{
+  "name": "oxc-playground",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Phase 2 教材: ESLint / Oxlint / Biome / Prettier / Oxfmt を同じ fixture で比較する検証用リポジトリ",
+  "scripts": {
+    "lint:eslint": "eslint --config configs/eslint.config.js fixtures/",
+    "lint:oxlint": "oxlint --config configs/.oxlintrc.json fixtures/",
+    "lint:oxlint:type-aware": "oxlint --config configs/.oxlintrc.json --type-aware fixtures/",
+    "lint:biome": "biome lint --config-path configs fixtures/",
+    "fmt:prettier:check": "prettier --check --config configs/.prettierrc.json fixtures/",
+    "fmt:oxfmt:check": "oxfmt --check fixtures/",
+    "fmt:biome:check": "biome format --config-path configs fixtures/",
+    "bench": "tsx scripts/bench.ts",
+    "matrix": "tsx scripts/detect-matrix.ts",
+    "format-diff": "tsx scripts/format-diff.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
+    "jiti": "^2.7.0",
+    "oxfmt": "latest",
+    "oxlint": "^1.0.0",
+    "oxlint-tsgolint": "latest",
+    "prettier": "^3.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.0.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}
